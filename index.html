@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ренова+ — Строительная компания</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f4f7fa;
+        }
+
+        /* ШАПКА */
+        .header {
+            background: #1e3a5f;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            background: white;
+            width: 150px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Заглушка для логотипа, если картинки нет */
+        .logo-placeholder {
+            font-size: 42px;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        .company-name {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .spacer {
+            width: 150px;
+        }
+
+        /* ОСНОВНОЙ БЛОК */
+        .main-content {
+            flex: 1;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Стили для главной страницы */
+        .home-section {
+            text-align: center;
+        }
+
+        .home-section h1 {
+            font-size: 36px;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+        }
+
+        .home-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: #2c7da0;
+            color: white;
+            padding: 18px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: none;
+        }
+
+
+        /* Стили для страницы проектов */
+        .projects-section h1, .contacts-section h1 {
+            font-size: 32px;
+            color: #1e3a5f;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            text-align: center;
+            border-left: 5px solid #2c7da0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+
+        .project-card h3 {
+            color: #1e3a5f;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #2c7da0;
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 12px;
+        }
+
+        /* Стили для страницы контактов */
+        .contacts-section .info-block {
+            background: white;
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contacts-section .info-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+        }
+
+        .contacts-section .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            font-size: 28px;
+            width: 60px;
+            text-align: center;
+        }
+
+        .info-text strong {
+            color: #1e3a5f;
+            display: inline-block;
+            width: 100px;
+        }
+
+        .info-text {
+            color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: #2c7da0;
+            padding: 12px 32px;
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            margin-top: 40px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background: #1a5a7a;
+            transform: translateY(-2px);
+        }
+
+        /* ФУТЕР */
+        .footer {
+            background: #2c3e2f;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+            border-top: 1px solid #1e2a1f;
+        }
+
+        .footer a {
+            color: #ffd966;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Скрытие секций */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Адаптив */
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .spacer {
+                display: none;
+            }
+            .company-name {
+                font-size: 24px;
+            }
+            .logo {
+                width: 100px;
+                height: 70px;
+            }
+            .button-group {
+                gap: 15px;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .contacts-section .info-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            .info-icon {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА (одинаковая для всех страниц) -->
+    <div class="header">
+        <div class="logo">
+            <!-- Замените "лого.png" на ваш файл. Если картинки нет, покажется плейсхолдер -->
+            <img src="лого.png" alt="Логотип Ренова+" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-placeholder" style="display: none;">🏗️</div>
+        </div>
+        <div class="company-name">Ренова+</div>
+        <div class="spacer"></div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (переключаемые страницы) -->
+    <div class="main-content">
+        <!-- Главная страница -->
+        <div id="home-page" class="page active">
+            <div class="home-section">
+                <h1>Добро пожаловать в Ренова+</h1>
+                <p>
+                    Мы — команда профессионалов, которая помогает обновлять и улучшать ваши пространства.<br>
+                    Строительство, ремонт, отделка, дизайн — всё под ключ. Надёжно, качественно, с душой.
+                </p>
+                <div class="button-group">
+                    <button class="btn" id="show-projects-btn">Наши проекты</button>
+                    <button class="btn" id="show-contacts-btn">Контакты и данные</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница с проектами -->
+        <div id="projects-page" class="page">
+            <div class="projects-section">
+                <h1>Наши реализованные и текущие проекты</h1>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Проекты будут добавлены через JavaScript -->
+                </div>
+                <div style="text-align: center;">
+                    <button class="back-link" id="back-to-home-from-projects">← Вернуться на главную</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница с контактами -->
+        <div id="contacts-page" class="page">
+            <div class="contacts-section">
+                <h1>Контактные данные и реквизиты</h1>
+                <div class="info-block">
+                    <div class="info-item">
+                        <div class="info-icon"></div>
+                        <div class="info-text"><strong>Телефон:</strong> +7 (917) 434-55-50</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"></div>
+                        <div class="info-text"><strong>Email:</strong> info@renovaplus.ru</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"></div>
+                        <div class="info-text"><strong>Адрес:</strong> г. Уфа, ул. Гоголя, 72, офис 206</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"></div>
+                        <div class="info-text"><strong>Режим работы:</strong> Пн–Пт: 9:00 – 19:00, Сб: 10:00 – 15:00</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"></div>
+                        <div class="info-text"><strong>ИНН:</strong> 0274123456</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"></div>
+                        <div class="info-text"><strong>ОГРН:</strong> 1200200012345</div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="back-link" id="back-to-home-from-contacts">← Вернуться на главную</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФУТЕР -->
+    <div class="footer">
+        <p>© 2025 Ренова+ — Все права защищены. | г. Уфа, ул. Гоголя, д. 72, офис 206</p>
+    </div>
+
+    <script>
+        // Список проектов из вашего файла + дополнительная информация
+        const projects = [
+            { name: "ЖК Уфимский Кремль", address: "Пархоменко, 151/2", status: "Активный проект" },
+            { name: "ЖК Яркий", address: "современный квартал", status: "Сдан в 2024" },
+            { name: "ЖК Edison", address: "инновационная архитектура", status: "Сдан в 2023" },
+            { name: "Частный дом", address: "с. Нагаево", status: "Коттеджный поселок" },
+            { name: "ЖК Уфимский кремль", address: "инвестиционный проект", status: "Инвест проект" },
+            { name: "ЖК Novaland", address: "бизнес-класс", status: "Строительство" }
+        ];
+
+        // Функция для отображения проектов
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <h3> ${project.name}</h3>
+                    <p> ${project.address}</p>
+                    <span class="project-badge">${project.status}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Функции переключения страниц
+        function showPage(pageId) {
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Показать нужную
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+            // Прокрутка вверх
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Навигация
+        document.getElementById('show-projects-btn').addEventListener('click', () => {
+            renderProjects(); // обновляем список проектов при каждом открытии
+            showPage('projects-page');
+        });
+
+        document.getElementById('show-contacts-btn').addEventListener('click', () => {
+            showPage('contacts-page');
+        });
+
+        document.getElementById('back-to-home-from-projects').addEventListener('click', () => {
+            showPage('home-page');
+        });
+
+        document.getElementById('back-to-home-from-contacts').addEventListener('click', () => {
+            showPage('home-page');
+        });
+
+        // Рендерим проекты сразу (на случай, если кто-то захочет открыть через прямую ссылку, но у нас все через кнопки)
+        renderProjects();
+    </script>
+</body>
+</html>
